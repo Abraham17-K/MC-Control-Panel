@@ -1,0 +1,11 @@
+{
+  "name": "mc-control-panel",
+  "version": "1.0.0",
+  "description": "A mc control panel I'm working on.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Abe",
+  "license": "ISC"
+}
