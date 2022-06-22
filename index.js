@@ -31,22 +31,30 @@ app.post("/createServer", (req, res) => {
           return
      }
      const serverObj = {
-               "name": serverName,
+          serverName: {
                "software": software
+          }
      }
-     fs.writeFileSync("./servers/servers.json", JSON.stringify(jsonData, null, 2))
+     const writeObj = {
+          ...jsonData,
+          ...serverObj
+     }
+     console.log(JSON.stringify(writeObj))
+     if (jsonData == {}) {
+          fs.writeFileSync("./servers/servers.json", JSON.stringify(writeObj, null, 2))
+     } else {
+          fs.writeFileSync("./servers/servers.json", JSON.stringify(writeObj, null, 2))
+     }
      setupServer(serverName, software)
 })
 
 
 function setupServer(name, software) {
-     const data = JSON.parse(fs.readFileSync("./servers/servers.json"))
      const urls = JSON.parse(fs.readFileSync("./softwares.json"))
      fs.mkdirSync(`./servers/${name}`)
      const file = fs.createWriteStream(`./servers/${name}/server.jar`)
      const request = https.get(urls[`${software}`], (response) => {
           response.pipe(file)
-
           file.on("finish", () => {
                file.close()
           })
